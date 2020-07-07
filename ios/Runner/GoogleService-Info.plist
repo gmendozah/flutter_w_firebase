@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>539586826831-6ihsj658hla1j452vcuu8fgvme35bmsj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.539586826831-6ihsj658hla1j452vcuu8fgvme35bmsj</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAr2MyH_3dbjlKlmeks4yYmZd1YFjxEUDY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>539586826831</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gvs.flutterWFirebase</string>
+	<key>PROJECT_ID</key>
+	<string>discovery-69</string>
+	<key>STORAGE_BUCKET</key>
+	<string>discovery-69.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:539586826831:ios:428bec11ae8246d9c3503a</string>
+	<key>DATABASE_URL</key>
+	<string>https://discovery-69.firebaseio.com</string>
+</dict>
+</plist>
