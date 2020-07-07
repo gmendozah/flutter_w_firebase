@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "539586826831",
+    "firebase_url": "https://discovery-69.firebaseio.com",
+    "project_id": "discovery-69",
+    "storage_bucket": "discovery-69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539586826831:android:7e198cdd122d7e65c3503a",
+        "android_client_info": {
+          "package_name": "com.gvs.flutter_w_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539586826831-l0keqoq531tq6g43rpq6pvmelf121rg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnz3mdqzdQbmmB_tc5JcsofYX2ALPAFDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "539586826831-l0keqoq531tq6g43rpq6pvmelf121rg7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
