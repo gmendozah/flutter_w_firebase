@@ -44,9 +44,12 @@
     <key>CFBundleURLTypes</key>
     <array>
       <dict>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>fb2675129276091701</string>
+        <string>com.googleusercontent.apps.539586826831-6ihsj658hla1j452vcuu8fgvme35bmsj</string>
       </array>
       </dict>
     </array>
