@@ -16,8 +16,8 @@ class AuthService {
     }
   }
 
-  //sign in with facebook
-  Future<FirebaseUser> facebookSignIn(AuthCredential credential) async {
+  //sign in with facebook | google
+  Future<FirebaseUser> signInWithCredential(AuthCredential credential) async {
     try {
       AuthResult result = await _auth.signInWithCredential(credential);
       FirebaseUser user = result.user;
