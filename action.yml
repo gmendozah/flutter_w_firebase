@@ -3,7 +3,6 @@ uses: GitGuardian/gg-shield-action@v1.1.0
 
 on: [push, pull_request]
 
-
 jobs:
   scanning:
     name: GitGuardian scan
