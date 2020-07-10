@@ -15,4 +15,15 @@ class AuthService {
       throw e;
     }
   }
+
+  //sign in with facebook
+  Future<FirebaseUser> facebookSignIn(AuthCredential credential) async {
+    try {
+      AuthResult result = await _auth.signInWithCredential(credential);
+      FirebaseUser user = result.user;
+      return user;
+    } catch (e) {
+      throw e;
+    }
+  }
 }

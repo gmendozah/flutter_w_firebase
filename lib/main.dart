@@ -81,16 +81,21 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Future getProfileInformation(var token) async {
+  Future getProfileInformation(String token) async {
     var client = http.Client();
 
     final graphResponse = await client.get(
         'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=$token');
     final profile = jsonDecode(graphResponse.body);
     print(profile);
-    setState(() {
+    /*setState(() {
       _userInfo = profile.toString();
-    });
+    });*/
+    final AuthCredential credential = FacebookAuthProvider.getCredential(
+      accessToken: token,
+    );
+    FirebaseUser user = await _authService.facebookSignIn(credential);
+    loadUser(user);
   }
 
   void onLoginStatusChanged(bool isLoggedIn) {
@@ -102,6 +107,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Future authenticate() async {
     FirebaseUser user = await _authService.signInWithEmailAndPassword(
         _usernameCtrl.text, _passwordCtrl.text);
+    loadUser(user);
+  }
+
+  loadUser(FirebaseUser user){
     setState(() {
       _userInfo = user.uid;
     });
