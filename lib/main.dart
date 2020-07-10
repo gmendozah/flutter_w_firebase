@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:flutter_w_firebase/services/auth_service.dart';
 
 void main() {
@@ -35,6 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _usernameCtrl, _passwordCtrl;
   int _counter = 0;
   String _userInfo = '';
+  bool isLoggedIn = false;
+
+  //fb vars
 
   @override
   void initState() {
@@ -52,13 +59,47 @@ class _MyHomePageState extends State<MyHomePage> {
     _passwordCtrl.dispose();
   }
 
-  void _incrementCounter() {
+  _MyHomePageState() {}
+
+  void initiateFacebookLogin() async {
+    var facebookLogin = FacebookLogin();
+    var result = await facebookLogin.logIn(['email']);
+    switch (result.status) {
+      case FacebookLoginStatus.error:
+        print("Error");
+        onLoginStatusChanged(false);
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        print("CancelledByUser");
+        onLoginStatusChanged(false);
+        break;
+      case FacebookLoginStatus.loggedIn:
+        print("LoggedIn");
+        onLoginStatusChanged(true);
+        getProfileInformation(result.accessToken.token);
+        break;
+    }
+  }
+
+  Future getProfileInformation(var token) async {
+    var client = http.Client();
+
+    final graphResponse = await client.get(
+        'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=$token');
+    final profile = jsonDecode(graphResponse.body);
+    print(profile);
     setState(() {
-      _counter++;
+      _userInfo = profile.toString();
     });
   }
 
-  authenticate() async {
+  void onLoginStatusChanged(bool isLoggedIn) {
+    setState(() {
+      this.isLoggedIn = isLoggedIn;
+    });
+  }
+
+  Future authenticate() async {
     FirebaseUser user = await _authService.signInWithEmailAndPassword(
         _usernameCtrl.text, _passwordCtrl.text);
     setState(() {
@@ -134,6 +175,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     authenticate();
                   },
                 ),
+              ),
+              FacebookSignInButton(
+                onPressed: () => initiateFacebookLogin(),
               ),
             ],
           ),
