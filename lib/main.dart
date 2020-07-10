@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -40,6 +41,12 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   String _userInfo = '';
   bool isLoggedIn = false;
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
 
   //fb vars
 
@@ -48,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _usernameCtrl = TextEditingController();
     _passwordCtrl = TextEditingController();
-    _usernameCtrl.text = 'mygvs.mh@gmail.com';
+    _usernameCtrl.text = 'geovani@gmail.com';
     _passwordCtrl.text = 'contrasena';
   }
 
@@ -94,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final AuthCredential credential = FacebookAuthProvider.getCredential(
       accessToken: token,
     );
-    FirebaseUser user = await _authService.facebookSignIn(credential);
+    FirebaseUser user = await _authService.signInWithCredential(credential);
     loadUser(user);
   }
 
@@ -120,6 +127,21 @@ class _MyHomePageState extends State<MyHomePage> {
     print('uid: ${user.uid}');
     print('photoUrl: ${user.photoUrl}');
     print('providerId: ${user.providerId}');
+  }
+
+  Future _handleGoogleSignIn() async {
+    try {
+      GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.getCredential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      FirebaseUser user = await _authService.signInWithCredential(credential);
+      loadUser(user);
+    } catch (error) {
+      print(error);
+    }
   }
 
   @override
@@ -188,6 +210,10 @@ class _MyHomePageState extends State<MyHomePage> {
               FacebookSignInButton(
                 onPressed: () => initiateFacebookLogin(),
               ),
+              GoogleSignInButton(
+                onPressed: () => _handleGoogleSignIn(),
+                darkMode: true, // default: false
+              )
             ],
           ),
         ),
