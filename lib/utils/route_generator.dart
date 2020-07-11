@@ -12,8 +12,7 @@ class RouteGenerator {
         );
         break;
       case '/main_menu':
-        return PageRouteBuilder(
-        );
+        return PageRouteBuilder();
         break;
     }
   }
