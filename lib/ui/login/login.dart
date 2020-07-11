@@ -17,6 +17,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPage extends State<LoginPage> {
   final AuthService _authService = AuthService();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   TextEditingController _usernameCtrl, _passwordCtrl;
   int _counter = 0;
   String _userInfo = '';
@@ -37,6 +39,14 @@ class _LoginPage extends State<LoginPage> {
     _passwordCtrl = TextEditingController();
     _usernameCtrl.text = 'geovani@gmail.com';
     _passwordCtrl.text = 'contrasena';
+    getUser();
+  }
+
+  Future getUser() async {
+    var user = await _firebaseAuth.currentUser();
+    if(user != null) {
+      Navigator.of(context).pushReplacementNamed('/todo_list');
+    }
   }
 
   @override
@@ -98,6 +108,7 @@ class _LoginPage extends State<LoginPage> {
   }
 
   loadUser(FirebaseUser user) {
+    Navigator.of(context).pushReplacementNamed('/todo_list');
     setState(() {
       _userInfo = user.uid;
     });
