@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
     loadUser(user);
   }
 
-  loadUser(FirebaseUser user){
+  loadUser(FirebaseUser user) {
     setState(() {
       _userInfo = user.uid;
     });
@@ -132,7 +132,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Future _handleGoogleSignIn() async {
     try {
       GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.getCredential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
@@ -213,7 +214,7 @@ class _MyHomePageState extends State<MyHomePage> {
               GoogleSignInButton(
                 onPressed: () => _handleGoogleSignIn(),
                 darkMode: true, // default: false
-              )
+              ),
             ],
           ),
         ),
