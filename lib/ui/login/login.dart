@@ -129,7 +129,7 @@ class _LoginPage extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text('Login'),
       ),
       body: Center(
         child: Container(
