@@ -12,7 +12,7 @@ workflows:
         scripts:
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/$HOST_ANDROID_APP_DIR/local.properties"
             - cd $FLUTTER_MODULE_DIR && flutter pub get
-            - flutter build apk --release
+            - flutter build apk --debug
             #- cd $HOST_ANDROID_APP_DIR && ./gradlew assembleDebug
         publishing:
             email:
