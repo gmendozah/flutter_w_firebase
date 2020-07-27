@@ -6,8 +6,8 @@ workflows:
         name: Android App with Flutter Module
         environment:
             vars:
-                FLUTTER_MODULE_DIR: "$FCI_BUILD_DIR/"
-                HOST_ANDROID_APP_DIR: "$FCI_BUILD_DIR/android"
+                FLUTTER_MODULE_DIR: "$FCI_BUILD_DIR"
+                HOST_ANDROID_APP_DIR: "android"
             flutter: stable
         scripts:
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/$HOST_ANDROID_APP_DIR/local.properties"
