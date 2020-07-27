@@ -6,7 +6,7 @@ workflows:
         name: Android App with Flutter Module
         environment:
             vars:
-                FLUTTER_MODULE_DIR: "$FCI_BUILD_DIR"
+                FLUTTER_MODULE_DIR: "$FCI_BUILD_DIR/flutter_w_firebase"
                 HOST_ANDROID_APP_DIR: "android"
             flutter: stable
         scripts:
