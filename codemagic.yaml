@@ -10,9 +10,13 @@ workflows:
                 HOST_ANDROID_APP_DIR: "android"
             flutter: stable
         scripts:
-            - ls
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/$HOST_ANDROID_APP_DIR/local.properties"
             - cd $FLUTTER_MODULE_DIR && flutter pub get
-            - cd $HOST_ANDROID_APP_DIR && ./gradlew assembleDebug
+            - flutter build apk --release
+            #- cd $HOST_ANDROID_APP_DIR && ./gradlew assembleDebug
+        publishing:
+            email:
+                recipients:
+                    - geovanimendoza.h@gmail.com
         artifacts:
             - $HOST_ANDROID_APP_DIR/app/build/outputs/**/**/*.apk
