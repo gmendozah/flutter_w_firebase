@@ -67,4 +67,5 @@ dependencies {
     implementation "androidx.multidex:multidex:$multidex_version"
 }
 
+apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'
