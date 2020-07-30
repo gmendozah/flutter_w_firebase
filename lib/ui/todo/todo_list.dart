@@ -25,6 +25,10 @@ class _TodoListPage extends State<TodoListPage> {
     }
   }
 
+  _TodoListPage() {
+    //throw Exception();
+  }
+
   signOutUser() {
     _firebaseAuth.signOut();
     Navigator.of(context).pushReplacementNamed('/login');
